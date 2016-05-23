@@ -48,6 +48,7 @@
   },
 
   "rules": {
+    "global-require": 0,
     "jsx-control-statements/jsx-choose-not-empty": 1,
     "jsx-control-statements/jsx-for-require-each": 1,
     "jsx-control-statements/jsx-for-require-of": 1,

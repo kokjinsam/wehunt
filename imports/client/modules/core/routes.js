@@ -29,7 +29,7 @@ export default function (injectDeps, { FlowRouter }) {
       addLinks(defaultLinks);
 
       mount(TrioLayoutCtx, {
-        topNavigation: () => (<p>Top navigation</p>),
+        topNavigation: () => (<p>topNavigation</p>),
         content: () => (<p>Content Page</p>),
         footer: () => (<p>Footer</p>),
       });

@@ -1,17 +1,60 @@
 const rootSchema = [`
-  type Todos {
+  enum FeedType {
+    TRENDING
+    NEW
+    POPULAR
+  }
+
+  enum VoteType {
+    UP
+    DOWN
+    CANCEL
+  }
+
+  type Story {
     _id: String
-    todo: String
+    title: String
+    content: String
     createdAt: String
-    completed: Boolean
+  }
+
+  type VoteHistory {
+    _id: String
+    storyId: String
+    userId: String
+    createdAt: String
+    type: String
+  }
+
+  type StoryComment {
+    _id: String
+    storyId: String
+    authorId: String
+    content: String
+    createdAt: String
   }
 
   type Query {
-    allTodos: [Todos]
+    feed(type: FeedType!): [Story]
+    story(id: String!): Story
   }
 
   type Mutation {
-    createTodo(todo: String): String
+    createStory(
+      company: String!,
+      title: String!,
+      content:String!,
+    ): String
+
+    vote(
+      id: String!,
+      type: VoteType!
+    ): String
+
+    comment(
+      storyId: String!,
+      content: String!
+    ): String
   }
 
   schema {

@@ -1,3 +1,5 @@
+// @flow
+
 import * as Collections from '../../lib/collections';
 import { Meteor } from 'meteor/meteor';
 import { FlowRouter } from 'meteor/kadira:flow-router';
@@ -7,7 +9,11 @@ import thunk from 'redux-thunk';
 import createLogger from 'redux-logger';
 import { configureGraphQLClient } from 'apollo-tools';
 
-export default function ({ reducers }) {
+type contextType = {
+  reducers: Object,
+};
+
+export default function ({ reducers }: contextType) {
   const Client = configureGraphQLClient({
     url: '/graphql',
   });

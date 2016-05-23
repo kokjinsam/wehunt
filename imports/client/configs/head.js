@@ -1,3 +1,5 @@
+// @flow
+
 /* Meta */
 export const defaultMetas = [
   {

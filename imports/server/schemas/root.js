@@ -1,3 +1,5 @@
+// @flow
+
 const rootSchema = [`
   enum FeedType {
     TRENDING

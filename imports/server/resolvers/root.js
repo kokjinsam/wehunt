@@ -37,16 +37,14 @@ type commentType = {
 const rootResolvers = {
   Query: {
     async feed(_: rootType, { type }: feedType) {
-      // type: string
       return Stories.find({
         type,
       }).fetch();
     },
     async story(_: rootType, { id }: storyType) {
-      // type: id
       return Stories.findOne({
         _id: id,
-      }).fetch();
+      });
     },
   },
   Mutation: {

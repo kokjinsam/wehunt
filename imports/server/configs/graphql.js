@@ -1,12 +1,19 @@
+// @flow
+
 import { WebApp } from 'meteor/webapp';
 import { apolloServer } from 'apollo-server';
 import express from 'express';
 import proxyMiddleware from 'http-proxy-middleware';
 
+type configureGraphQLType = {
+  schema: string,
+  resolvers: string,
+};
+
 export default function ({
   schema,
   resolvers,
-}) {
+}: configureGraphQLType) {
   const graphQLServer = express();
   const GRAPHQL_PORT = 4000;
 

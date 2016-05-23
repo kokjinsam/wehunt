@@ -1,3 +1,5 @@
+// @flow
+
 import {
   TODO_SAVED,
   TODO_SAVING,
@@ -5,12 +7,21 @@ import {
   TODO_CHECKING,
 } from '../actions/types';
 
+type defaultStateType = {
+  saving: boolean,
+  checking: boolean,
+};
+
+type actionType = {
+  type: string,
+};
+
 const defaultState = {
   saving: false,
   checking: false,
 };
 
-function todosReducer(state = defaultState, action) {
+function todosReducer(state: defaultStateType = defaultState, action: actionType) {
   switch (action.type) {
     case TODO_SAVED:
       return {

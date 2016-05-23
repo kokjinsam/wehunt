@@ -1,24 +1,56 @@
+// @flow
+
 import {
   Stories,
   VoteHistories,
   StoryComments,
 } from '../../lib/collections';
 
+type rootType = {
+  _: null,
+};
+
+type feedType = {
+  type: string,
+};
+
+type storyType = {
+  id: string,
+};
+
+type createStoryType = {
+  company: string,
+  title: string,
+  content: string,
+};
+
+type voteType = {
+  id: string,
+  type: string,
+};
+
+type commentType = {
+  storyId: string,
+  content: string,
+};
+
 const rootResolvers = {
   Query: {
-    async feed(_, { type }) {
+    async feed(_: rootType, { type }: feedType) {
+      // type: string
       return Stories.find({
         type,
       }).fetch();
     },
-    async story(_, { id }) {
+    async story(_: rootType, { id }: storyType) {
+      // type: id
       return Stories.findOne({
         _id: id,
       }).fetch();
     },
   },
   Mutation: {
-    async createStory(_, { company, title, content }) {
+    async createStory(_: rootType, { company, title, content }: createStoryType) {
       const createdAt = new Date();
       return Stories.insert({
         company,
@@ -28,7 +60,7 @@ const rootResolvers = {
         votes: 0,
       });
     },
-    async vote(_, { id, type }) {
+    async vote(_: rootType, { id, type }: voteType) {
       const voteValue = {
         UP: 1,
         DOWN: -1,
@@ -57,7 +89,7 @@ const rootResolvers = {
         type,
       });
     },
-    async comment(_, { storyId, content }) {
+    async comment(_: rootType, { storyId, content }: commentType) {
       const selector = {
         _id: storyId,
       };
